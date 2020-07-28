@@ -13,29 +13,31 @@
             </form>
             <button class="btn btn-outline-light" @click="search">search</button>
         </div>
-        <transition name="slide"  mode="out-in">
-            <div class="warning justify-content-center text-danger">
-                {{ warningText }}
-            </div>
-        </transition>
-<!--        <p style="color: red">songName(search): {{ songName }}</p>-->
+        <div style="height: 25px">
+            <transition name="slide"  mode="out-in">
+                <div class="warning justify-content-center text-danger" v-if="showWarning">
+                    {{ warningText }}
+                </div>
+            </transition>
+        </div>
     </div>
 </template>
 <script>
     export default {
         data() {
             return{
-                warningText: ''
+                warningText: 'Please Enter a Song Name First',
+                showWarning : false
             }
         },
         props:['songName'],
         methods: {
             search(){
                 if(this.songName !== ''){
-                    this.warningText = '';
+                    this.showWarning = false;
                     this.$emit('SearchButtonClicked', this.songName);
                 }else {
-                    this.warningText = 'Please Enter s Song Name First';
+                    this.showWarning = true;
                 }
             }
         }
