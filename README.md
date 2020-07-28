@@ -1,4 +1,4 @@
-# vue-cli
+# vue lyric finder
 
 > A Vue.js project
 
